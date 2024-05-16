@@ -1,3 +1,3 @@
 # powershell_config
 
-powershell profile config and scripts
+My powershell profile config and scripts that i use in my coding environment.
