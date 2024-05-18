@@ -54,3 +54,30 @@ function Convert-HexColorToFlutter
     return $flutterColor
 }
 Set-Alias hex -Value "Convert-HexColorToFlutter"
+
+#Edit the powershell profile
+function Edit-Profile{
+    nvim $PROFILE.CurrentUserAllHosts
+}
+
+# Powershell implementation of the touch cli command from linux
+function touch($file){
+    "" | Out-File $file -Encoding utf8
+}
+
+# function to determine the system uptime since the machine was put on.
+function uptime{
+  
+    net statistics workstation | Select-String "since" | ForEach-Object{$_.ToString().Replace('Statistics since','') }
+}
+
+# Powershell implementation of the sed linux command
+function sed($file, $find, $replace){
+    (Get-Content $file).Replace("$find",$replace) | Set-Content $file
+}
+
+#Powershell implementationnof the which command
+function which($name){
+    Get-Command $name | Select-Object -ExpandProperty Definition
+}
+
