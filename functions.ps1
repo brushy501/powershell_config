@@ -67,8 +67,16 @@ function touch($file){
 
 # function to determine the system uptime since the machine was put on.
 function uptime{
-  
-    net statistics workstation | Select-String "since" | ForEach-Object{$_.ToString().Replace('Statistics since','') }
+    $bootuptime = (Get-CimInstance -ClassName Win32_OperatingSystem).LastBootUpTime
+    $CurrentDate = Get-Date
+    $uptime = $CurrentDate - $bootuptime
+    #Windows Powershell only
+        net statistics workstation | Select-String "since" | foreach-object {$_.ToString().Replace('Statistics since ', 'Last Reboot: ')}
+    Write-Output "Uptime: Days: $($uptime.days), Hours: $($uptime.Hours), Minutes:$($uptime.Minutes), Seconds:$($uptime.Seconds)"
+    Remove-Variable bootuptime
+    Remove-Variable CurrentDate
+    Remove-Variable uptime
+    #net statistics workstation | Select-String "since" | ForEach-Object{$_.ToString().Replace('Statistics since','') }
 }
 
 # Powershell implementation of the sed linux command
