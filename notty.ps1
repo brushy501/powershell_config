@@ -8,21 +8,25 @@
 #Specify the full path to the directory where your markdown notes are stored
 $noteDir = "C:/Users/User/Documents"
 
-function noted {
+function noted
+{
   #check the the directory exists
-  if ( -not(Test-Path $noteDir)) {
+  if ( -not(Test-Path $noteDir))
+  {
     Write-Host "Path does not exist"
     return
   }
 
   #Checks if fzf is installed and available
-  if (-not(Test-Path (Get-Command fzf | Select-Object -ExpandProperty Definition -ErrorAction SilentlyContinue))) {
+  if (-not(Test-Path (Get-Command fzf | Select-Object -ExpandProperty Definition -ErrorAction SilentlyContinue)))
+  {
     Write-Host "Error: fzf is not installed. Please install fzf and try again." -ForegroundColor black -BackgroundColor red
     return
   }
 
   # Checks if glow is installed and availble
-  if ( -not(Test-Path (Get-Command glow | Select-Object -ExpandProperty Definition -ErrorAction SilentlyContinue))) {
+  if ( -not(Test-Path (Get-Command glow | Select-Object -ExpandProperty Definition -ErrorAction SilentlyContinue)))
+  {
     Write-Host "Error: glow is not installed. Please install glow and try again" -ForegroundColor black -BackgroundColor red
     return
   }
@@ -32,17 +36,20 @@ function noted {
 }
 
 #function to search and select a markdown file for editing if available.If not it will be created.
-function search_note {
+function search_note
+{
   #Prompt the user for a filename to find using fzf.
   $selectedFile = (&fzf)
 
-  if ([string]::IsNullOrEmpty($selectedFile)) {
+  if ([string]::IsNullOrEmpty($selectedFile))
+  {
     #If no search term is provided, create a new markdown file
     Write-Host "To create a new file press escape to leave fzf"
     $newFilename = Read-Host "Enter a name for the new Markdown file(without extension)"
     # create a path to the new file by joining the filename to the path
     $newFile = Join-Path -Path $noteDir -ChildPath "$newFilename.md"
-    if ( -not(Test-Path $newFile)) {
+    if ( -not(Test-Path $newFile))
+    {
       #create a new markdown file if it doesn't exist using the path created above
       New-Item -Itemtype File -Path $newFile | Out-Null
     }
@@ -56,7 +63,8 @@ function search_note {
 }
 
 #Use the glow cli to render the markdown file in the terminal and autorefresh when file changes
-function render_markdown([string] $markdownfile) {
+function render_markdown([string] $markdownfile)
+{
   #Get the full path of the markdown file
   $filePath = (Resolve-Path  $markdownfile).Path
 
@@ -69,7 +77,8 @@ function render_markdown([string] $markdownfile) {
 }
 
 #function to render markdown using glow
-function glow_render([string] $file) {
+function glow_render([string] $file)
+{
   #clear the screen
   Clear-Host
 
@@ -78,18 +87,25 @@ function glow_render([string] $file) {
 }
 
 #watch for changes in the file rendered using glow
-function watch_glow_file([string] $watchfile) {
-  while ($true) {
+function watch_glow_file([string] $watchfile)
+{
+  while ($true)
+  {
+    #Get the file item name with its properties
     $file = Get-Item $watchfile
 
     #find the last write time.
     $lastWriteTime = $file.LastWriteTime
 
     #wait for the file to be modified
-    while ($file.LastWriteTime -eq $lastWriteTime) {
+    while ($file.LastWriteTime -eq $lastWriteTime)
+    {
+      #suspend the script for 500 milliseconds
       Start-Sleep -Milliseconds 500
+      #Get the file item name with its properties
       $file = Get-Item $watchfile
     } 
+    #call the render function
     glow_render $watchfile
   }
 }
