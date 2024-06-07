@@ -2,7 +2,7 @@
 
 My powershell profile scripts that i use in my coding environment to up my productivity.
 None of my scripts connect to the internet, everything is local. The main cli utilities
-used are [zoxide](https://github.com/ajeetdsouza/zoxide), [glow](https://github.com/ajeetdsouza/zoxide),
+used are [zoxide](https://github.com/ajeetdsouza/zoxide), [glow](https://github.com/charmbracelet/glow),
 [fzf](https://github.com/junegunn/fzf), [nvim](https://github.com/neovim/neovim) and the windows terminal application.
 
 ## 1. notty.ps1
