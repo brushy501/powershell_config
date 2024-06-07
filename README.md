@@ -6,10 +6,14 @@ used are [zoxide](https://github.com/ajeetdsouza/zoxide), [glow](https://github.
 [fzf](https://github.com/junegunn/fzf), [nvim](https://github.com/neovim/neovim) and the windows terminal application.
 
 ## 1. notty.ps1
+![notty](https://github.com/brushy501/powershell_config/assets/48830968/8c6e490e-b4ce-4ddd-bab7-3cab46217c99)
 
 This script is allow the editing and previewing of a markdown document using glow from [charmbracelet](https://github.com/charmbracelet/glow).
 It uses fzf to fuzzy search and find the file.The markdown file can be edited using any editor of your choice, but as i am using the terminal
 i use nvim, change it to suit your terminal editor of choice.An image of it being used it below.
+
+![notty_script_usage](https://github.com/brushy501/powershell_config/assets/48830968/20590af9-e863-486f-bce3-77623c67d202)
+
 
 
 ## 2. cheatsheet.ps1
