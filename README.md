@@ -12,7 +12,8 @@ This script is allow the editing and previewing of a markdown document using glo
 It uses fzf to fuzzy search and find the file.The markdown file can be edited using any editor of your choice, but as i am using the terminal
 i use nvim, change it to suit your terminal editor of choice.An image of it being used it below.
 
-![notty_script_usage](https://github.com/brushy501/powershell_config/assets/48830968/20590af9-e863-486f-bce3-77623c67d202)
+![notty](https://github.com/brushy501/powershell_config/assets/48830968/1c220c6f-ae56-49c1-a49e-933860605423)
+
 
 
 
@@ -21,4 +22,3 @@ i use nvim, change it to suit your terminal editor of choice.An image of it bein
 A script to emulate the functionality of navi or tldr using the powershell scripting language and fzf. The selected cheat command is executed
 when selected. I use this for git commands that i do not remember but need to execute. You can add to the functionality. The cheat files are
 saved with the comment starting with a "#", example: "# Check the status of git files". The command is directly below it in a new line.
-
