@@ -89,3 +89,22 @@ function which($name){
     Get-Command $name | Select-Object -ExpandProperty Definition
 }
 
+# Search through the powershell command history using fzf
+function cmdhistory
+{
+    #get the command history
+    $history = (Get-PSReadlineOption).HistorySavePath
+
+    #use fzf to select a command
+    $selectedCommand = Get-Content $history | fzf
+
+    if($selectedCommand)
+    {
+        Invoke-Expression $selectedCommand
+    } else
+    {
+        return $null
+    }
+
+}
+
